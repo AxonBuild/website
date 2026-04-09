@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { getPost } from "../data/posts";
 import { formatDateDdMmYyyy } from "../formatDate";
@@ -51,6 +52,7 @@ export function PostPage() {
       </p>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           a: ({ href, children, ...props }) => {
             if (href?.startsWith("http")) {

@@ -20,7 +20,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: visible; /* hero uses 120% width + negative margins */
 }
 
 body {
@@ -102,6 +102,7 @@ body {
   flex: 1;
   max-width: 44rem;
   width: 100%;
+  min-width: 0; /* flex child: allow shrink so % widths on images resolve correctly */
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
 }
@@ -152,18 +153,21 @@ body {
   color: var(--text);
 }
 
-/* Full content column width, rounded — no zoom (avoids edge crop) */
+/* 120% of column width, centered (–10% margins each side) */
 .hero-figure {
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 44rem;
-  width: 100%;
+  display: block;
+  width: 120%;
+  max-width: none;
+  min-width: 0;
+  margin: 1.5rem -10% 0;
+  box-sizing: border-box;
 }
 
 .hero-image-frame {
   position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid var(--border);
@@ -186,6 +190,7 @@ body {
 .hero-image {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
